@@ -9,6 +9,14 @@ const storage = multer.diskStorage({
       cb(null, file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.')[1])
     }
 })
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage ,
+                        fileFilter: function (req, file, callback) {
+                            var ext = path.extname(file.originalname);
+                            if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+                                return callback(new Error('Only images (jpg,png,gif) are allowed'))
+                            }
+                            callback(null, true)
+                        }
+})
 
 module.exports = upload
