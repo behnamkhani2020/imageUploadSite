@@ -5,8 +5,6 @@ const app = express()
 const logger = require('morgan')
 const router = require('./routers/homeRoutes')
 
-console.log(process.env)
-console.log(path.join(__dirname,'variables.env'))
 app.set('view engine','ejs')
 app.set('views','./views')
 app.use(express.static(path.join(__dirname,'public')))
