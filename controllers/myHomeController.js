@@ -3,17 +3,22 @@ const Image = require('../models/Image')
 
 
 const get = async (req,res)=>{
-    await Image.create({
-        name : 'hello',
-        created_at : Date.now()
+    const images = await Image.findAll()
+    console.log(images)
+    res.render('home',{
+        images : images 
     })
-    res.render('home')
 }
 
 const post = async (req,res)=>{
-    console.log(req.body)
-    console.log(req.file.filename)
-    res.send('uploaded')
+    await Image.create({
+        name : req.file.filename,
+        created_at : Date.now()
+    })
+    const images = await Image.findAll()
+    res.render('home',{
+        images : images
+    })
 }
 
 module.exports = {

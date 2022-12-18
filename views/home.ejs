@@ -27,6 +27,23 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
-
+<br/>
+<div class="container">
+  <div class="row">
+    <% images.forEach(image => { %>
+      <div class="col-4">
+        <div class="card">
+          <div class="card-header d-flex justify-content-center">
+            <img src="http://localhost:3500/uploads/<%= image.name %> " class = "mx-auto" alt="no image">
+          </div>
+          <div class="card-body">
+            <a href="/copy" class="btn btn-block bg-info">copy link</a>
+            <a href="/delete/<%= image.id %> " class="btn btn-block bg-danger">Delete image</a>
+          </div>
+        </div>
+      </div>
+      <% }) %> 
+  </div>
+</div>
 </body>
 </html>
